@@ -23,7 +23,7 @@ public class Board
         float tileWidth = width / numCols;
         float tileHeight = height / numRows;
         tiles = new Tile[numRows][numCols];
-        MAX_MINES = numRows;
+        MAX_MINES = (int) (numRows * 1.5);
 
         fillTilesArray(tileWidth, tileHeight, numRows, numCols);
 
@@ -32,26 +32,26 @@ public class Board
     private void fillTilesArray(float tileWidth, float tileHeight, int numRows, int numCols)
     {
         int minesPlaced = 0;
-        Random random = new Random(); // this generates random numbers for us
+        Random random = new Random();
         while (minesPlaced < MAX_MINES)
         {
-            int x = random.nextInt((int) numCols); // a number between 0 and mWidth - 1
+            int x = random.nextInt((int) numCols);
             int y = random.nextInt((int) numRows);
-            // make sure we don't place a mine on top of another
+
             if (!(tiles[y][x] instanceof Bomb))
             {
-                tiles[y][x] = new Bomb(ORIGIN_X + (y * tileWidth), ORIGIN_Y + (x * tileHeight), tileWidth,
-                        tileHeight, y, x);
+                tiles[y][x] = new Bomb(ORIGIN_X + (y * tileWidth), ORIGIN_Y + (x * tileHeight), tileWidth, tileHeight,
+                        y, x);
+                minesPlaced++;
             }
         }
-        
+
         for (int i = 0; i < numRows; i++)
         {
-            
+
             for (int j = 0; j < numCols; j++)
             {
-                
-                    
+
                 if (!(tiles[i][j] instanceof Bomb))
                 {
                     tiles[i][j] = new Empty(ORIGIN_X + (i * tileWidth), ORIGIN_Y + (j * tileHeight), tileWidth,
@@ -200,7 +200,20 @@ public class Board
             }
 
         }
+        
         return result.toArray(new Tile[result.size()]);
+    }
+    
+    public int numNeighbouringBombs(int x, int y)
+    {
+        int count = 0;
+        
+        for (int k = (x == 0 ? 0 : x - 1); k <= (x == getNumRows() - 1 ? getNumRows() - 1 : x + 1); k++)
+            for (int m = (y == 0 ? 0 : y - 1); m <= (y == getNumCols() - 1 ? getNumCols() - 1 : y + 1); m++)
+                if (tiles[k][m] instanceof Bomb)
+                    count++;
+        
+        return count;
     }
 
 }

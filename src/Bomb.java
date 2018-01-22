@@ -14,7 +14,7 @@ public class Bomb extends Tile
     public static void setup(PApplet drawer)
     {
         bombImg = drawer.loadImage("Images//bomb.png");
-        
+
     }
 
     public void draw(PApplet drawer)

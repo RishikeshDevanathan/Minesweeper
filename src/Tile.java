@@ -7,9 +7,9 @@ public class Tile extends Rectangle
     private boolean isVisble = false;
     private int xPos;
     private int yPos;
-    
-    private static PImage covered;
-    private static PImage uncovered;
+
+    public static PImage covered;
+    public static PImage uncovered;
 
     public Tile(float x, float y, float width, float height, int xPos, int yPos)
     {
@@ -35,7 +35,8 @@ public class Tile extends Rectangle
             marker.imageMode(PApplet.CORNER);
             marker.image(covered, (float) super.getX(), (float) super.getY(), (float) super.getWidth(),
                     (float) super.getHeight());
-        } else
+        }
+        else
         {
             marker.imageMode(PApplet.CORNER);
             marker.image(uncovered, (float) super.getX(), (float) super.getY(), (float) super.getWidth(),

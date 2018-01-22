@@ -50,8 +50,4 @@ public class Empty extends Tile
         this.neighbouringBombs = neighbouringBombs;
     }
 
-    
-    
-    
-
 }

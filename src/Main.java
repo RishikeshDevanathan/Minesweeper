@@ -12,7 +12,6 @@ public class Main
 
     public static void main(String args[])
     {
-        
         DrawingSurface drawing = new DrawingSurface();
 
         PApplet.runSketch(new String[] { "" }, drawing);
@@ -26,7 +25,5 @@ public class Main
         window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         window.setResizable(true);
         window.setVisible(true);
-        
-        
     }
 }
